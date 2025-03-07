@@ -25,7 +25,7 @@ public class NossoVetor {
 
     public void insere(int i){
         if(estaCheio()) redimensiona(vetor.length*2);
-            vetor[ocupacao++] = i;
+        vetor[ocupacao++] = i;
     }
 
     public boolean estaCheio(){
@@ -35,7 +35,7 @@ public class NossoVetor {
     @Override
     public String toString(){
         String vect = "";
-        for (int i=0;i<ocupacao;i++) {
+        for (int i:vetor) {
             vect += i+" " ;
         }
         return vect;
@@ -45,16 +45,30 @@ public class NossoVetor {
         return ocupacao == 0;
     }
 
+    // public int remove(){
+    //     if (!estaVazio()){
+    //         int aux = vetor[--ocupacao];
+    //         if(ocupacao <= vetor.length/4 && vetor.length >= 4){
+    //             redimensiona(vetor.length/2);
+    //         };
+    //         return aux;
+    //     }
+    //     return -1;
+    // }
+
     public int remove(){
-        if (!estaVazio()){
-            int aux = vetor[--ocupacao];
-            if(ocupacao <= vetor.length/4 && vetor.length >= 4){
-                redimensiona(vetor.length/2);
-            };
-            return aux;
+        if (estaVazio()){
+            throw new VetorVazioException("Vetor Vazio, não há oque remover");
         }
-        return -1;
+        
+        int aux = vetor[--ocupacao];
+        if(ocupacao <= vetor.length/4 && vetor.length >= 4){
+            redimensiona(vetor.length/2);
+        };
+        return aux;
+        
     }
+
     // private void aumentaVetor(){
     //     int[] temp = new int[2*vetor.length]; 
     //     for(int i =0;i<ocupacao;i++){
@@ -90,5 +104,41 @@ public class NossoVetor {
             vetor[i] = random.nextInt(vetor.length*10);
         }
         ocupacao = vetor.length;
+    }
+
+    public boolean contem(int valor){
+        for(int i = 0 ;i<ocupacao;i++){
+            if (vetor[i] == valor){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int indexOf(int valor){
+        for(int i = 0 ; i < ocupacao;i++){
+            if (vetor[i] == valor){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void bubbleSort(){
+        for(int vez=1; vez<vetor.length;vez++){
+            for(int i =0;i<vetor.length - vez;i++){
+                if(vetor[i]>vetor[i+1]){
+                    int aux = vetor[i];
+                    vetor[i] = vetor[i+1];
+                    vetor[i+1] = aux;
+                }
+            }
+        }
+    }
+}
+
+class VetorVazioException extends RuntimeException{
+    VetorVazioException(String msg){
+        super(msg);
     }
 }
