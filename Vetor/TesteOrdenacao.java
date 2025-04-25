@@ -12,6 +12,7 @@ public class TesteOrdenacao {
             //Teste de Ordenação
             v.preencheVetor();
             //System.out.println("Original: "+v);
+
             //Bubble
             inicio = new Date().getTime();
             v.bubbleSort();
@@ -33,22 +34,26 @@ public class TesteOrdenacao {
             System.out.println("O insertion demorou "+(fim-inicio)+" milisegundos");
 
             //Bubble Ordenado
+            v.preencheVetor();
             inicio = new Date().getTime();
             v.bubbleSort();
             fim = new Date().getTime();
             System.out.println("O bubble demorou "+(fim-inicio)+" milisegundos");
 
             //Selection Ordenado
+            v.preencheVetor();
             inicio = new Date().getTime();
             v.selectionsort();
             fim = new Date().getTime();
             System.out.println("O selection demorou "+(fim-inicio)+" milisegundos");
 
             //Insertion Ordenado
+            v.preencheVetor();
             inicio = new Date().getTime();
             v.insertionsort();
             fim = new Date().getTime();
             System.out.println("O insertion demorou "+(fim-inicio)+" milisegundos");
+
 
             System.out.println("\nEscolha o novo tamanho, 0 encerra: ");
             t = scanner.nextInt();
