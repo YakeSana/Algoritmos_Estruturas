@@ -42,4 +42,48 @@ public class NossoHash<K,V> {
             System.out.println("\n");
         }
     }
+
+    public boolean isEmpty(){
+        for(int i=0;i<capacidade;i++){
+            if(tabela[i] != null){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean containsKey(K key){
+        int indice = hash(key);
+        Entrada<K,V> atual = tabela[indice];
+        while(atual != null){
+            if(key.equals(atual.key)){
+                return true;
+            }
+            atual = atual.proximo;
+        }
+        return false;    
+    }
+
+    public boolean containsValue(V value){
+        for(Entrada<K,V> valor : tabela){
+            while(valor != null){
+                if(value.equals(valor.value)){
+                    return true;
+                }
+                valor = valor.proximo;  
+            }
+        }
+        return false;
+    }
+
+    public int size(){
+        int tamanho = 0;
+        for(int i=0;i<capacidade;i++){
+            Entrada<K,V> atual = tabela[i];
+            while(atual != null){
+                tamanho++;
+            }
+        }
+        return tamanho;
+    }
 }

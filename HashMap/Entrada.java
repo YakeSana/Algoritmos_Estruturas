@@ -7,4 +7,8 @@ public class Entrada<K,V>{
         this.value = value;
         this.proximo = null;
     }
+
+    public V getValue() {
+        return value;
+    }
 }
