@@ -192,6 +192,29 @@ public class NossoVetor {
         }
         System.out.println();
     }
+
+    public void mergeSort(int p,int r){
+        if(p<r){
+            int q = (p+r)/2;
+            mergeSort(p, q);
+            mergeSort(q+1, r);
+            merge(p,q,r);
+        }
+    }
+
+    public void merge(int p, int q, int r){
+        int n1 = q - p + 1;
+        int n2 = r - q + 1;
+        int[] left = new int[n1+1];
+        int[] right = new int[n2+1];
+        
+        for( int i =0;i<n1;i++){
+            left[i]=vetor[p+i];
+        }
+        for( int j =0;j<n2;j++){
+            right[j]=vetor[q+1+j];
+        }
+    }
 }
 
 class VetorVazioException extends RuntimeException {

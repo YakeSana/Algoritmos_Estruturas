@@ -1,4 +1,6 @@
 import java.io.UncheckedIOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class NossoHash<K,V> {
     private Entrada<K,V>[] tabela;
@@ -85,5 +87,18 @@ public class NossoHash<K,V> {
             }
         }
         return tamanho;
+    }
+
+    public List<V> getListaValores(K key){
+        int indice = hash(key);
+        Entrada<K,V> atual = tabela[indice];
+        List<V> lista = new ArrayList<>();
+        while (atual != null) {
+            if(atual.key.equals(key)){
+                lista.add(atual.value);
+            }
+            atual = atual.proximo;
+        }
+        return lista;
     }
 }
